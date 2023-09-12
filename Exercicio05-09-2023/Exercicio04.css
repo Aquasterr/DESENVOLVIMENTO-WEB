@@ -1,0 +1,11 @@
+body { background-color: cornflowerblue;}
+
+h1 { 
+    background-color: rgb(190, 159, 19); 
+    padding: 12px;
+}
+
+.Cinza {
+    background-color: gray;
+    text-align: center;
+}
