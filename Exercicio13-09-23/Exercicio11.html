@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio11</title>
+</head>
+<body>
+    <script>
+        numero = 0;
+
+        for (let index = 1; index <= 100; index++) {
+            if (index != 100){
+                document.write(index + " + ")
+            }
+            else
+            {
+                document.write(index);
+            }
+        }
+
+        for (let index = 1; index <= 100; index++) {
+            numero = numero + index;
+            if (index == 100)
+            document.write("<br>" + "A soma é de: " + numero);
+        }
+    </script>
+</body>
+</html>
