@@ -59,7 +59,9 @@ app.delete('/clientes/:cpf', (req, res) => {
 app.put('/clientes/:cpf', (req, res) => {
     let cliente = req.body;
     let sql = `UPDATE cliente 
-    SET nome='${cliente.nome}',
+    SET 
+    cpf='${cliente.cpf}',
+    nome='${cliente.nome}',
     email='${cliente.email}',
     senha='${cliente.senha}',
     endereco='${cliente.endereco}' 
