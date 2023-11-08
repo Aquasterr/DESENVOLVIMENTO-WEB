@@ -11,13 +11,17 @@
         />
     </head>
     <body style="background-color: #ADD8E6;">
+        <!-- Cabeçalho -->
         <nav class="navbar navbar-expand-lg" style="background-color: #1515a8;">
             <a class="navbar-brand  text-white font-weight-bold" href="#">
+                <!-- PNG da Logo aqui -->
                 <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
             </a>
+            <!-- Lista de outros links do Site Contendo CRUD -->
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
+                        <!-- Link para o Inicio -->
                         <a class="nav-link"
                         href="#"
                         style="color: white;
@@ -25,6 +29,7 @@
                         >Inicio <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
+                        <!-- Link para o Cadastro de Cliente -->
                         <a class="nav-link"
                         href="#"
                         style="color: white;
@@ -32,6 +37,7 @@
                         >Cadastro de Cliente</a>
                     </li>
                     <li class="nav-item">
+                        <!-- Link para o Cadastro de Equipe -->
                         <a class="nav-link"
                         href="#"
                         style="color: white;
@@ -39,6 +45,7 @@
                         >Cadastro de Equipe</a>
                     </li>
                     <li class="nav-item">
+                        <!-- Link para o Cadastro de Profissional -->
                         <a class="nav-link"
                         href="#"
                         style="color: white;
@@ -46,6 +53,7 @@
                         >Cadastro de Profissional</a>
                     </li>
                     <li class="nav-item">
+                        <!-- Link para a Criação de Portfólios -->
                         <a class="nav-link"
                         href="#"
                         style="color: white;
@@ -53,6 +61,7 @@
                         >Portfólio</a>
                     </li>
                 </ul>
+                <!-- Barra de Pesquisa -->
                 <form class="form-inline my-2 my-lg-0" onsubmit="event.preventDefault(); displayClientesPorNome();">
                     <input class="form-control mr-sm-2" type="search" id="barraPesquisa" placeholder="Buscar...">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
@@ -65,6 +74,7 @@
         <!-- Formulário para adicionar/editar Clientes -->
         <form id="clienteForm" class="my-4">
             <div class="form-group">
+                <!-- Campo de Nome -->
                 <label for="nome">Nome Completo:</label>
                 <input
                 type="text"
@@ -75,6 +85,7 @@
                 />
             </div>
             <div class="form-group">
+                <!-- Campo de E-mail -->
                 <label for="email">Email:</label>
                 <input
                 type="email"
@@ -85,6 +96,7 @@
                 />
             </div>
             <div class="form-group">
+                <!-- Campo de Senha -->
                 <label for="senha">Senha:</label>
                 <input
                 type="password"
@@ -95,6 +107,7 @@
                 />
             </div>
             <div class="form-group">
+                <!-- Campo de CPF -->
                 <label for="cpf">CPF:</label>
                 <input
                 type="number"
@@ -106,18 +119,20 @@
             />
             </div>
             <div class="form-group">
+                <!-- Campo de Endereço -->
                 <label for="endereco">Endereço:</label>
                 <textarea class="form-control"
                 id="endereco"
                 rows="3"
                 placeholder="Endereço"></textarea>
             </div>
+                <!-- Botão para Cadastrar-se -->
                 <button 
                 type="submit" 
                 class="btn btn-primary"
                 >Cadastrar
                 </button>
-
+                <!-- Botão para Cancelar (Somente Visivel durante alteração) -->
                 <button
                 type="button"
                 id="cancelBtn"
@@ -140,9 +155,9 @@
             <tbody id="clientesTable"></tbody>
         </table>
         <script>
-            // Array para armazenar produtos do servidor
+            // Array para armazenar os clientes do servidor
             let clientes = [];
-            // ID do produto em edição
+            // ID do cliente em edição
             let clienteAtual = null;
 
             // Função para exibir produtos na tabela
@@ -152,7 +167,7 @@
                 clientes.forEach((cliente) => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
-
+                    
                     <td style="border: 2px solid #5f626e";>${cliente.nome}</td>
                     <td style="border: 2px solid #5f626e";>${cliente.email}</td>
                     <td style="border: 2px solid #5f626e";>${cliente.senha}</td>
@@ -171,6 +186,7 @@
                     tbody.appendChild(row);
                 });
             }
+            // Função para mostrar clientes caso seja procurado pela Barra de Pesquisa
             function displayClientesPorNome() {
                 const tbody = document.getElementById("clientesTable");
                 tbody.innerHTML = "";
@@ -215,8 +231,8 @@
                 method: "DELETE"
                 })
                 .then(() => {
-                clientes = clientes.filter((c) => c.cpf !== cpf);
-                displayClientes();
+                    clientes = clientes.filter((c) => c.cpf !== cpf);
+                    displayClientes();
                 })
                 .catch((error) => console.error("Error:", error));
             }
@@ -257,11 +273,11 @@
             } else {
             // Se for um novo cliente
             fetch("http://localhost:3002/clientes", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(cliente),
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(cliente),
             })
             .then((response) => response.json())
             .then((data) => {
@@ -276,9 +292,9 @@
             document
             .getElementById("cancelBtn")
             .addEventListener("click", function () {
-            clienteAtual = null;
-            document.getElementById("clienteForm").reset();
-            this.style.display = "none";
+                clienteAtual = null;
+                document.getElementById("clienteForm").reset();
+                this.style.display = "none";
             });
             // Carrega clientes do servidor ao carregar a página
             fetch("http://localhost:3002/clientes/")
