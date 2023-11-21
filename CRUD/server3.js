@@ -72,7 +72,7 @@ app.put('/clientes/:cpf', (req, res) => {
             console.error(err);
             res.status(500).json({ error: 'Ocorreu um erro durante a atualização do cliente.' });
         } else {
-            console.log(result);
+            console.log(cliente);
             res.json(cliente);
         }
     });
