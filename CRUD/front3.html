@@ -218,7 +218,7 @@
             // Função para carregar um cliente no formulário para edição
             function editCliente(cpf) {
                 clienteAtual = cpf;
-                const cliente = clientes.find((c) => c.cpf === cpf);
+                const cliente = clientes.find((c) => c.cpf === cpf.toString());
                 document.getElementById("nome").value = cliente.nome;
                 document.getElementById("email").value = cliente.email;
                 document.getElementById("senha").value = cliente.senha;
@@ -233,7 +233,7 @@
                 method: "DELETE"
                 })
                 .then(() => {
-                    clientes = clientes.filter((c) => c.cpf !== cpf);
+                    clientes = clientes.filter((c) => c.cpf === cpf);
                     displayClientes();
                 })
                 .catch((error) => console.error("Error:", error));
@@ -245,7 +245,7 @@
             event.preventDefault();
             // Coleta os valores do formulário
             const cliente = {
-                cpf: parseInt(document.getElementById("cpf").value),
+                cpf: document.getElementById("cpf").value,
                 nome: document.getElementById("nome").value,
                 email: document.getElementById("email").value,
                 senha: document.getElementById("senha").value,
@@ -263,7 +263,7 @@
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
-                    const index = clientes.findIndex((c) => c.cpf === clienteAtual);
+                    const index = clientes.findIndex((c) => c.cpf === clienteAtual.toString());
                     clientes[index] = data;
                     displayClientes();
                     // Limpa o formulário e reseta o produto em edição
