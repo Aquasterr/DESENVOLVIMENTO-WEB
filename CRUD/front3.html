@@ -233,7 +233,7 @@
                 method: "DELETE"
                 })
                 .then(() => {
-                    clientes = clientes.filter((c) => c.cpf === cpf);
+                    clientes = clientes.filter((c) => c.cpf !== cpf.toString());
                     displayClientes();
                 })
                 .catch((error) => console.error("Error:", error));
