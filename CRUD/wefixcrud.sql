@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22/11/2023 às 15:13
+-- Tempo de geração: 22/11/2023 às 17:38
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -40,8 +40,9 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`nome`, `cpf`, `email`, `senha`, `endereco`) VALUES
-('Crudder2', '15236845268', 'Crudder2@crud.com.br', 'Curdsad2', 'Crudder Rua CRUD Estrada Crud	Crudder Rua CRUD Estrada Crud	'),
+('Crudder2', '15236845268', 'Crudder2@crud.com.br', 'Curdsad2', 'Crudder Rua CRUD Estrada Crud	Crudder Rua CRUD Estrada Crud	d'),
 ('Crudder Amo Crud', '212323213', 'Crudder@crud.com.br', '213213123', 'Crudder Rua CRUD Estrada Crud'),
+('Cruddererr', '22222222222', 'HomemCrud@CRUD.com.br', 'CrudCrud', 'Crudder Rua CRUD Estrada Crud'),
 ('Crudder Amo Crud2', '712323213', 'Crudder@crud.com.br', '213213123', 'Crudder Rua CRUD Estrada Crud');
 
 -- --------------------------------------------------------
@@ -65,9 +66,9 @@ CREATE TABLE `empreiteiro` (
 --
 
 INSERT INTO `empreiteiro` (`nome`, `cpf`, `email`, `senha`, `endereco`, `especialidade`, `certificados`) VALUES
-('matheuszila', '53363010869', 'matheus.boas@uscsonline.com.br', '25435424654565', 'gbyth,uik.ipl.,gjiuk,', 'yugujyfu', 'yui,fyiu,yijmfyjg'),
-('matheuszin', '93363010869', 'matheus.boas@uscsonline.com.br', 'sadassd5424654565', 'gbyth,uik.ipl.,gjiuk,', 'yugujyfu', 'yui,fyiu,yijmfyjg'),
-('CRUDDER', '99363010869', 'CRUD.CRudder@uscsonline.com.br', 'curcducudrcudrucd', 'Crudder Rua CRUD Estrada Crud', 'CRUD', 'Crudss');
+('matheuszilaa', '22222222222', 'matheuszilaa@matheuszilaa.com', 'LaoSOskMrM', 'Rua Rua Estrada Estrada Bairro Bairro', 'Arquiteto', 'Driproma'),
+('matheuszila', '53363010869', 'matheus.boas@uscsonline.com.br', '25435424654565', 'gbyth,uik.ipl.,gjiuk,', 'yugujyfu', 'yui,fyiu,yijmfyj'),
+('matheuszin', '93363010869', 'matheus.boas@uscsonline.com.br', 'sadassd5424654565', 'gbyth,uik.ipl.,gjiuk,', 'yugujyfu', 'yui,fyiu,yijmfyjg');
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,7 @@ CREATE TABLE `equipe` (
 --
 
 INSERT INTO `equipe` (`nome`, `email`, `senha`, `cpf`, `quantidade`, `especialidade`) VALUES
-('g', 'b@wee', 'a', '111', 1, 'a'),
+('Homem CRUD', 'HomemCrud@CRUD.com.br', 'CrudCrud', '1111111111', 2, 'Arquiteto'),
 ('merson', 'merso@gmail.com', 'emers', '333333', 3, 'encanador');
 
 --
