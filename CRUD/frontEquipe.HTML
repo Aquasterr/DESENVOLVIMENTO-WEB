@@ -236,7 +236,7 @@
             // Função para carregar uma equipe no formulário para edição
             function editEquipe(cpf) {
                 equipeAtual = cpf;
-                const equipe = equipes.find((e) => e.cpf === cpf.toString());
+                const equipe = equipes.find((e) => e.cpf == cpf.toString());
                 document.getElementById("nome").value = equipe.nome;
                 document.getElementById("email").value = equipe.email;
                 document.getElementById("senha").value = equipe.senha;
@@ -252,7 +252,7 @@
                 method: "DELETE"
                 })
                 .then(() => {
-                    equipes = equipes.filter((e) => e.cpf !== cpf.toString());
+                    equipes = equipes.filter((e) => e.cpf != cpf.toString());
                     displayEquipes();
                 })
                 .catch((error) => console.error("Error:", error));
@@ -283,7 +283,7 @@
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
-                    const index = equipes.findIndex((e) => e.cpf === equipeAtual.toString());
+                    const index = equipes.findIndex((e) => e.cpf == equipeAtual.toString());
                     equipes[index] = data;
                     displayEquipes();
                     // Limpa o formulário e reseta o produto em edição
