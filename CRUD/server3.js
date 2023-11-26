@@ -46,6 +46,14 @@ app.get('/clientes', (req, res) => {
     });
 });
 
+// Obter todes es Portfolies
+app.get('/portfolios', (req,res) => {
+    let sql = 'SELECT * FROM portfolio';
+    db.query(sql, (err, results) => {
+        res.json(results);
+    })
+})
+
 
 // Obter uma equipe
 app.get('/equipes/:cpf', cors(), (req, res) => {
@@ -66,6 +74,14 @@ app.get('/empreiteiros/:cpf', (req, res) => {
 // Obter um Cliente
 app.get('/clientes/:cpf', (req, res) => {
     let sql = `SELECT * FROM cliente WHERE cpf=${req.params.cpf}`;
+    db.query(sql, (err, results) => {
+        res.json(results);
+    });
+});
+
+// Obter um portfolie
+app.get('/portfolios/:cpf', (req, res) => {
+    let sql = `SELECT * FROM portfolio WHERE cpf=${req.params.cpf}`;
     db.query(sql, (err, results) => {
         res.json(results);
     });
@@ -96,7 +112,7 @@ app.post('/empreiteiros', (req, res) => {
     res.status(201).json(empreiteiro);
 });
 
-// Adiciona Clientes
+// Adiciona clientes
 app.post('/clientes', (req, res) => {
     let cliente = req.body;
     let sql = 'INSERT INTO cliente SET ?';
@@ -106,7 +122,15 @@ app.post('/clientes', (req, res) => {
     res.status(201).json(cliente);
 });
 
-
+// Adiciona Portfolies
+app.post('/portfolios', (req, res) => {
+    let portfolio = req.body;
+    let sql = 'INSERT INTO portfolio SET ?';
+    db.query(sql, portfolio, (err, result) => {
+        console.log(result);
+    });
+    res.status(201).json(portfolio);
+});
 // ---------------- PUTs ----------------
 
 // Altera Equipes
@@ -181,6 +205,30 @@ app.put('/clientes/:cpf', (req, res) => {
     });
 });
 
+// Altera Portfolies
+app.put('/portfolios/:cpf', (req, res) => {
+    let portfolio = req.body;
+    let sql = `UPDATE portfolio 
+    SET 
+    cpf='${portfolio.cpf}',
+    NomePrestador='${portfolio.NomePrestador}',
+    TipoDeReforma='${portfolio.TipoDeReforma}',
+    Detalhes='${portfolio.Detalhes}' ,
+    Funcao='${portfolio.Funcao}' ,
+    Imagem='${portfolio.Imagem}'
+    WHERE cpf='${req.params.cpf}'`;
+    
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Ocorreu um erro durante a atualização do portfolie.' });
+        } else {
+            console.log(portfolio);
+            res.json(portfolio);
+        }
+    });
+});
+
 // ---------------- DELETEs ----------------
 
 
@@ -211,6 +259,14 @@ app.delete('/clientes/:cpf', (req, res) => {
     });
 });
 
+// Deleta Portfolies
+app.delete('/portfolios/:cpf', (req, res) => {
+    let sql = `DELETE FROM portfolio
+    WHERE cpf=${req.params.cpf}`;
+    db.query(sql, (err, result) => {
+        res.send('Portfolio Deletado!');
+    });
+});
 
 // ---------------- ETCs ----------------
 

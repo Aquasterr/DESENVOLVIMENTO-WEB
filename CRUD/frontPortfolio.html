@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Cadastramento de Equipes - WeFix</title>
+        <title>Cadastramento de Portfolios - WeFix</title>
         <!-- Pra Colocar a logo na aba -->
         <link rel="icon" href="logo.png">
         <!-- Importando estilos do Bootstrap -->
@@ -64,7 +65,7 @@
                     </li>
                 </ul>
                 <!-- Barra de Pesquisa -->
-                <form class="form-inline" onsubmit="event.preventDefault(); displayEquipesPorNome();">
+                <form class="form-inline" onsubmit="event.preventDefault(); displayPortfoliosPorNome();">
                     <input class="form-control mr-sm-2" type="search" id="barraPesquisa" placeholder="Buscar...">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                 </form>
@@ -72,45 +73,34 @@
         </nav>
     <div class="container">
         <br>
-        <h1 class="text-center">Cadastramento de Equipes</h1>
-        <!-- Formulário para adicionar/editar Equipes -->
-        <form id="equipeForm" class="my-4">
+        <h1 class="text-center">Cadastramento de Portfolios</h1>
+        <!-- Formulário para adicionar/editar Portfolios -->
+        <form id="portfolioForm" class="my-4">
             <div class="form-group">
                 <!-- Campo de Nome -->
-                <label for="nome">Nome Da Equipe:</label>
+                <label for="NomePrestador">Nome Prestador:</label>
                 <input
                 type="text"
-                id="nome"
+                id="NomePrestador"
                 class="form-control"
                 placeholder="Nome"
                 required
                 />
             </div>
             <div class="form-group">
-                <!-- Campo de E-mail -->
-                <label for="email">Email do Responsável:</label>
+                <!-- Campo de Tipo de Reforma -->
+                <label for="TipoDeReforma">Tipo da reforma:</label>
                 <input
-                type="email"
-                id="email"
+                type="text"
+                id="TipoDeReforma"
                 class="form-control"
-                placeholder="Email@exemplo.com"
-                required
-                />
-            </div>
-            <div class="form-group">
-                <!-- Campo de Senha -->
-                <label for="senha">Senha:</label>
-                <input
-                type="password"
-                id="senha"
-                class="form-control"
-                placeholder="Senha"
+                placeholder="Descreva sua reforma"
                 required
                 />
             </div>
             <div class="form-group">
                 <!-- Campo de CPF -->
-                <label for="cpf">CPF do responsável:</label>
+                <label for="cpf">CPF:</label>
                 <input
                 type="number"
                 max="99999999999"
@@ -119,30 +109,40 @@
                 placeholder="CPF"
                 required
             />
-            </div>
             <div class="form-group">
-                <!-- Campo de Quantidade -->
-                <label for="quantidade">Quantidade:</label>
-                <input
-                type="number"
-                id="quantidade"
-                class="form-control"
-                placeholder="Quantidade"
-                required
-                />
-            </div>
-            <div class="form-group">
-                <!-- Campo de Especialidade -->
-                <label for="especialidade">Especialidade:</label>
+                <!-- Campo de Detalhes-->
+                <label for="Detalhes">Detalhes da reforma:</label>
                 <input
                 type="text"
-                id="especialidade"
+                id="Detalhes"
                 class="form-control"
-                placeholder="Especialidade"
+                placeholder="Detalhes da sua reforma"
                 required
                 />
+
+            <div class="form-group">
+                <label for="Funcao">Função:</label>
+                <select id="Funcao" class="form-control">
+                    <option selected>Eletricista</option>
+                    <option>Pintor</option>
+                    <option>Pedreiro</option>
+                    <option>Encanador</option>
+                    required
+                </select>
+
+                <div class="form-group">
+                    <!-- Campo de ibagens-->
+                    <label for="Imagem">Imagem da reforma</label>
+                    <input
+                    type="text"
+                    id="Imagem"
+                    name="Imagem"
+                    class="form-control"    
+                    accept="image/*"
+                    required
+                    />
             </div>
-           
+            </div>
                 <!-- Botão para Cadastrar-se -->
                 <button 
                 type="submit" 
@@ -158,154 +158,154 @@
                 >Cancelar
                 </button>
         </form>
-        <!-- Tabela para listar Equipes -->
+        <!-- Tabela para listar portfolios -->
         <table class="table table-bordered table-hover" style="background-color: #a9b8e6; border: 2px solid #5f626e;">
             <thead>
             <tr>
             <th style="border: 2px solid #5f626e";>Nome</th>
-            <th style="border: 2px solid #5f626e";>E-mail</th>
-            <th style="border: 2px solid #5f626e";>Senha</th>
+            <th style="border: 2px solid #5f626e";>Tipo</th>
             <th style="border: 2px solid #5f626e";>CPF</th>
-            <th style="border: 2px solid #5f626e";>Quantidade</th>
-            <th style="border: 2px solid #5f626e";>Especialidade</th>
+            <th style="border: 2px solid #5f626e";>Detalhes</th>
+            <th style="border: 2px solid #5f626e";>Funcao</th>
+            <th style="border: 2px solid #5f626e";>Imagem</th>
             </tr>
             </thead>
-            <tbody id="equipesTable"></tbody>
+            <tbody id="portfoliosTable"></tbody>
         </table>
         <script>
-            // Array para armazenar as equipes do servidor
-            let equipes = [];
-            // ID da equipe em edição
-            let equipeAtual = null;
+            // Array para armazenar os portfolios do servidor
+            let portfolios = [];
+            // ID do portfolio em edição
+            let portfolioAtual = null;
 
-            // Função para exibir equipes na tabela
-            function displayEquipes() {
-                const tbody = document.getElementById("equipesTable");
+            // Função para exibir produtos na tabela
+            function displayPortfolios() {
+                const tbody = document.getElementById("portfoliosTable");
                 tbody.innerHTML = "";
-                equipes.forEach((equipe) => {
+                portfolios.forEach((portfolio) => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
                     
-                    <td style="border: 2px solid #5f626e";>${equipe.nome}</td>
-                    <td style="border: 2px solid #5f626e";>${equipe.email}</td>
-                    <td style="border: 2px solid #5f626e";>${equipe.senha}</td>
-                    <td style="border: 2px solid #5f626e";>${equipe.cpf}</td>
-                    <td style="border: 2px solid #5f626e";>${equipe.quantidade}</td>
-                    <td style="border: 2px solid #5f626e";>${equipe.especialidade}</td>
+                    <td style="border: 2px solid #5f626e";>${portfolio.NomePrestador}</td>
+                    <td style="border: 2px solid #5f626e";>${portfolio.TipoDeReforma}</td>
+                    <td style="border: 2px solid #5f626e";>${portfolio.cpf}</td>
+                    <td style="border: 2px solid #5f626e";>${portfolio.Detalhes}</td>
+                    <td style="border: 2px solid #5f626e";>${portfolio.Funcao}</td>
+                    <td style="border: 2px solid #5f626e";>${portfolio.Imagem}</td>
                     <td style="border: 2px solid #5f626e";>
-                    <button class="btn btn-warning btn-sm"
+                    <button class="btn btn-warning btn-sm" type="button"
 
-                    onclick="editEquipe(${equipe.cpf})">Alterar</button>
+                    onclick="editPortfolio(${portfolio.cpf})">Alterar</button>
                             
                     <button class="btn btn-danger btn-sm"
-                    onclick="deleteEquipe(${equipe.cpf})">Remover</button>
+                    onclick="deletePortfolio(${portfolio.cpf})">Remover</button>
 
                     </td>
                     `;
                     tbody.appendChild(row);
                 });
             }
-            // Função para mostrar equipes caso seja procurado pela Barra de Pesquisa
-            function displayEquipesPorNome() {
-                const tbody = document.getElementById("equipesTable");
+            // Função para mostrar portfolios caso seja procurado pela Barra de Pesquisa
+            function displayPortfoliosPorNome() {
+                const tbody = document.getElementById("portfoliosTable");
                 tbody.innerHTML = "";
 
                 // Obtenha o nome da barra de pesquisa
                 const nomePesquisa = document.getElementById("barraPesquisa").value;
 
-                // Filtrar equipes que têm o mesmo nome que o nome da pesquisa
-                const equipesFiltrados = equipes.filter(e => e.cpf == nomePesquisa);
+                // Filtrar portfolios que têm o mesmo nome que o nome da pesquisa
+                const portfoliosFiltrados = portfolios.filter(p => p.NomePrestador == nomePesquisa);
 
-                equipesFiltrados.forEach((equipe) => {
+                portfoliosFiltrados.forEach((portfolio) => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
-                        <td style="border: 2px solid #5f626e";>${equipe.nome}</td>
-                        <td style="border: 2px solid #5f626e";>${equipe.email}</td>
-                        <td style="border: 2px solid #5f626e";>${equipe.senha}</td>
-                        <td style="border: 2px solid #5f626e";>${equipe.cpf}</td>
-                        <td style="border: 2px solid #5f626e";>${equipe.quantidade}</td>
-                        <td style="border: 2px solid #5f626e";>${equipe.especialidade}</td>
+                        <td style="border: 2px solid #5f626e";>${portfolio.NomePrestador}</td>
+                        <td style="border: 2px solid #5f626e";>${portfolio.TipoDeReforma}</td>
+                        <td style="border: 2px solid #5f626e";>${portfolio.cpf}</td>
+                        <td style="border: 2px solid #5f626e";>${portfolio.Detalhes}</td>
+                        <td style="border: 2px solid #5f626e";>${portfolio.Funcao}</td>
+                        <td style="border: 2px solid #5f626e";>${portfolio.Imagem}</td>
                         <td style="border: 2px solid #5f626e";>
-                            <button class="btn btn-warning btn-sm" onclick="editEquipe(${equipe.cpf})">Alterar</button>
-                            <button class="btn btn-danger btn-sm" onclick="deleteEquipe(${equipe.cpf})">Remover</button>
+                            <button class="btn btn-warning btn-sm" onclick="editPortfolio(${portfolio.cpf})">Alterar</button>
+                            <button class="btn btn-danger btn-sm" onclick="deletePortfolio(${portfolio.cpf})">Remover</button>
                         </td>
                     `;
                     tbody.appendChild(row);
                 });
             }
-            // Função para carregar uma equipe no formulário para edição
-            function editEquipe(cpf) {
-                equipeAtual = cpf;
-                const equipe = equipes.find((e) => e.cpf == cpf.toString());
-                document.getElementById("nome").value = equipe.nome;
-                document.getElementById("email").value = equipe.email;
-                document.getElementById("senha").value = equipe.senha;
-                document.getElementById("cpf").value = equipe.cpf;
-                document.getElementById("quantidade").value = equipe.quantidade;
-                document.getElementById("especialidade").value = equipe.especialidade;
+            // Função para carregar um portfolio no formulário para edição
+            function editPortfolio(cpf) {
+                portfolioAtual = cpf;
+                const portfolio = portfolios.find((p) => p.cpf === cpf.toString());
+                document.getElementById("NomePrestador").value = portfolio.NomePrestador;
+                document.getElementById("TipoDeReforma").value = portfolio.TipoDeReforma;
+                document.getElementById("cpf").value = portfolio.cpf;
+                document.getElementById("Detalhes").value = portfolio.Detalhes;
+                document.getElementById("Funcao").value = portfolio.Funcao;
+                document.getElementById("Imagem").value = portfolio.Imagem;
                 // Mostra o botão cancelar durante a edição
                 document.getElementById("cancelBtn").style.display = "inline-block";
             }
-            // Função para remover Equipe do servidor e atualizar a lista
-            function deleteEquipe(cpf) {
-                fetch("http://localhost:3002/equipes/" + cpf, {
+            // Função para remover portfolio do servidor e atualizar a lista
+            function deletePortfolio(cpf) {
+                fetch("http://localhost:3002/portfolios/" + cpf, {
                 method: "DELETE"
                 })
                 .then(() => {
-                    equipes = equipes.filter((e) => e.cpf != cpf.toString());
-                    displayEquipes();
+                    portfolios = portfolios.filter((p) => p.cpf !== cpf.toString());
+                    displayPortfolios();
                 })
                 .catch((error) => console.error("Error:", error));
             }
             // Evento para lidar com o envio do formulário
             document
-            .getElementById("equipeForm")
+            .getElementById("portfolioForm")
             .addEventListener("submit", function (event) {
             event.preventDefault();
             // Coleta os valores do formulário
-            const equipe = {
-                cpf: parseInt(document.getElementById("cpf").value),
-                nome: document.getElementById("nome").value,
-                email: document.getElementById("email").value,
-                senha: document.getElementById("senha").value,
-                quantidade: parseInt(document.getElementById("quantidade").value),
-                especialidade: document.getElementById("especialidade").value,
+            const portfolio = {
+                cpf: document.getElementById("cpf").value,
+                NomePrestador: document.getElementById("NomePrestador").value,
+                TipoDeReforma: document.getElementById("TipoDeReforma").value,
+                Funcao: document.getElementById("Funcao").value,
+                Detalhes: document.getElementById("Detalhes").value,
+                Imagem: document.getElementById("Imagem").value,
             };
-            if (equipeAtual) {
+            if (portfolioAtual) {
                 // Se estiver editando
-                fetch("http://localhost:3002/equipes/" + equipeAtual, {
+                fetch("http://localhost:3002/portfolios/" + portfolioAtual, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(equipe),
+                body: JSON.stringify(portfolio),
                 })
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
-                    const index = equipes.findIndex((e) => e.cpf == equipeAtual.toString());
-                    equipes[index] = data;
-                    displayEquipes();
+                    const index = portfolios.findIndex((p) => p.cpf === portfolioAtual.toString());
+                    portfolios[index] = data;
+                    displayPortfolios();
                     // Limpa o formulário e reseta o produto em edição
-                    document.getElementById("equipeForm").reset();
-                    equipeAtual = null;
+                    document.getElementById("portfolioForm").reset();
+                    portfolioAtual = null;
                     document.getElementById("cancelBtn").style.display = "none";
                 })
                 .catch((error) => console.error("Error:", error));
             } else {
-            // Se for uma nova equipe
-            fetch("http://localhost:3002/equipes", {
+            // Se for um novo portfolio
+            fetch("http://localhost:3002/portfolios", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(equipe),
+                body: JSON.stringify(portfolio),
             })
             .then((response) => response.json())
             .then((data) => {
-                equipes.push(data);
-                displayEquipes();
-                document.getElementById("equipeForm").reset();
+                portfolios.push(data);
+                displayPortfolios();
+                document.getElementById("portfolioForm").reset();
             })
             .catch((error) => console.error("Error:", error));
             }
@@ -314,16 +314,16 @@
             document
             .getElementById("cancelBtn")
             .addEventListener("click", function () {
-                equipeAtual = null;
-                document.getElementById("equipeForm").reset();
+                portfolioAtual = null;
+                document.getElementById("portfolioForm").reset();
                 this.style.display = "none";
             });
-            // Carrega Equipes do servidor ao carregar a página
-            fetch("http://localhost:3002/equipes/")
+            // Carrega portfolios do servidor ao carregar a página
+            fetch("http://localhost:3002/portfolios/")
             .then((response) => response.json())
             .then((data) => {
-                equipes = data;
-                displayEquipes();
+                portfolios = data;
+                displayPortfolios();
             })
             .catch((error) => console.error("Error:", error));
         </script>

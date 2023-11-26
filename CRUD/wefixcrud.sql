@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22/11/2023 às 17:38
+-- Tempo de geração: 27/11/2023 às 00:22
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -40,10 +40,10 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`nome`, `cpf`, `email`, `senha`, `endereco`) VALUES
-('Crudder2', '15236845268', 'Crudder2@crud.com.br', 'Curdsad2', 'Crudder Rua CRUD Estrada Crud	Crudder Rua CRUD Estrada Crud	d'),
+('Crudder2', '15236845268', 'Crudder2@crud.com.br', 'Curdsad2', 'Crudder Rua CRUD Estrada Crud	Crudder Rua CRUD Estrada Crud'),
 ('Crudder Amo Crud', '212323213', 'Crudder@crud.com.br', '213213123', 'Crudder Rua CRUD Estrada Crud'),
 ('Cruddererr', '22222222222', 'HomemCrud@CRUD.com.br', 'CrudCrud', 'Crudder Rua CRUD Estrada Crud'),
-('Crudder Amo Crud2', '712323213', 'Crudder@crud.com.br', '213213123', 'Crudder Rua CRUD Estrada Crud');
+('Homem CRUD', '344444324', 'Crudder2@CRUD.com.br', 'asdascsacsa', 'Crudder Crudder Crudder Crudder Crudder Crudder Crudder Crudder amo crud');
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,7 @@ CREATE TABLE `empreiteiro` (
 --
 
 INSERT INTO `empreiteiro` (`nome`, `cpf`, `email`, `senha`, `endereco`, `especialidade`, `certificados`) VALUES
-('matheuszilaa', '22222222222', 'matheuszilaa@matheuszilaa.com', 'LaoSOskMrM', 'Rua Rua Estrada Estrada Bairro Bairro', 'Arquiteto', 'Driproma'),
+('matheuszilaa', '22222222222', 'matheuszilaa@matheuszilaa.com', 'LaoSOskMrM', 'Rua Rua Estrada Estrada Bairro Bairro', 'Arquiteto', 'Dripromaa'),
 ('matheuszila', '53363010869', 'matheus.boas@uscsonline.com.br', '25435424654565', 'gbyth,uik.ipl.,gjiuk,', 'yugujyfu', 'yui,fyiu,yijmfyj'),
 ('matheuszin', '93363010869', 'matheus.boas@uscsonline.com.br', 'sadassd5424654565', 'gbyth,uik.ipl.,gjiuk,', 'yugujyfu', 'yui,fyiu,yijmfyjg');
 
@@ -90,8 +90,31 @@ CREATE TABLE `equipe` (
 --
 
 INSERT INTO `equipe` (`nome`, `email`, `senha`, `cpf`, `quantidade`, `especialidade`) VALUES
-('Homem CRUD', 'HomemCrud@CRUD.com.br', 'CrudCrud', '1111111111', 2, 'Arquiteto'),
-('merson', 'merso@gmail.com', 'emers', '333333', 3, 'encanador');
+('mersons', 'merso@gmail2.com', 'emers', '4444444', 32, 'encanador');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `portfolio`
+--
+
+CREATE TABLE `portfolio` (
+  `NomePrestador` varchar(255) NOT NULL,
+  `TipoDeReforma` varchar(255) NOT NULL,
+  `cpf` varchar(255) NOT NULL,
+  `Detalhes` varchar(255) NOT NULL,
+  `Funcao` varchar(255) NOT NULL,
+  `Imagem` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `portfolio`
+--
+
+INSERT INTO `portfolio` (`NomePrestador`, `TipoDeReforma`, `cpf`, `Detalhes`, `Funcao`, `Imagem`) VALUES
+('Claudio', 'Reformass', '123456789', 'To com problema na mangueira', 'Pedreiro', 'Mangueiras.png'),
+('Claudio Rogerio Undriano Crud', 'Reformas de reformas', '222222222', 'To com problema na mangueira', 'Encanador', 'Mangueiras.png'),
+('Claudio Roberto Umberto Dagoberto', 'Mangueira', '51858687837', 'To com problema na mangueira', 'Eletricista', 'asdasdasd');
 
 --
 -- Índices para tabelas despejadas
@@ -113,6 +136,12 @@ ALTER TABLE `empreiteiro`
 -- Índices de tabela `equipe`
 --
 ALTER TABLE `equipe`
+  ADD PRIMARY KEY (`cpf`);
+
+--
+-- Índices de tabela `portfolio`
+--
+ALTER TABLE `portfolio`
   ADD PRIMARY KEY (`cpf`);
 COMMIT;
 
