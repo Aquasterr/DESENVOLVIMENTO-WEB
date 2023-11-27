@@ -1,3 +1,10 @@
+== Membros ==
+
+* Gabriel Andrioli
+* Kawe Almeida
+* Henrique Willian
+* Matheus Guilherme Vilas Boas
+
 1-) Baixar todos arquivos do repósitorio do github
 
 2-) Crie uma nova database no PhPMyadmin do Xampp
